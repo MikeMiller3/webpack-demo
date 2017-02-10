@@ -1,5 +1,6 @@
+let config = require('./config.json')
 module.exports = function() {
-  var greet = document.createElement('div');
-    greet.textContent = "Hi there and greetings!Webpack-dev-server test!";
+  let greet = document.createElement('div');
+    greet.textContent = config.greeting;
       return greet;
-      };
+};
