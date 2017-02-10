@@ -1,6 +1,6 @@
 # webpack-demo
 > webpack 示例
-参考[guide]http://www.jianshu.com/p/941bfaf13be1
+* [参考](http://www.jianshu.com/p/941bfaf13be1)
 
 ``` bash
 npm install
