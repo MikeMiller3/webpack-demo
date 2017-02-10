@@ -8,16 +8,18 @@ filename: "bundle.js"
 
 //module: 加载器loaders配置
 module: {
-	rules: [
+	loaders: [
 		{
 			test: /\.json$/,
-			use: 'json-loader'
+			loader: 'json-loader'
 		},
 		{
 			test: /\.js$/,
-			exclude: 'node_modules',
-			use: 'babel-core',
-			//query: ['es2015']//支持es6语法
+			exclude: '/node_modules/',
+			loader: 'babel-loader',
+			query: {
+				presets: ['es2015']
+			}//支持es6语法
 		}
 	]
 },
