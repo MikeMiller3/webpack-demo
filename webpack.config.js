@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
 devtool: 'eval-source-map',
 entry: __dirname+"/js/main.js",
@@ -8,23 +10,30 @@ filename: "bundle.js"
 
 //module: 加载器loaders配置
 module: {
-	loaders: [
+	rules: [
 		{
 			test: /\.json$/,
-			loader: 'json-loader'
+			use: 'json-loader'
 		},
 		{
 			test: /\.js$/,
 			exclude: '/node_modules/',
-			loader: 'babel-loader'
-		}，
+			use: 'babel-loader'
+		},
 		{
-			test: /\.css$/,
-			loader: 'css-loader!style-loader'
+			test: /\.scss$/,
+			use: [{loader: "css-loader"},{loader: "style-loader"},{loader: "sass-loader"}]
 		}
 	]
 },
 
+plugins: [
+  new webpack.BannerPlugin("Copyright flaginfo shanghai."),//在这个数组中new一个就可以了
+  new HtmlWebpackPlugin({//自动引入打包后的js文件
+      template: __dirname + "/index.tmpl.html"
+    }),
+  // new webpack.HotModuleReplacementPlugin()//热加载插件TODO
+],
 //devServer: webpack-dev-server配置
 devServer: {
 	contentBase: __dirname,//本地服务器加载的页面所在目录
